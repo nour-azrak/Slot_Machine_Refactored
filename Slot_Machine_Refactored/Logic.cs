@@ -6,10 +6,11 @@ namespace Slot_Machine_Refactored
 {
     internal class Logic
     {
-        
+        static Random random = new Random();
+
         static public int[,] FillSlotMachineArray(int [,] slotMachineArray)
         {
-            Random random = new Random();
+            
             for (int rows = 0; rows < slotMachineArray.GetLength(0); rows++)
             {
                 for (int cols = 0; cols < slotMachineArray.GetLength(1); cols++)
