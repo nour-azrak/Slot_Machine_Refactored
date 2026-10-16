@@ -114,20 +114,34 @@ namespace Slot_Machine_Refactored
             return (diagOneIsEqual || diagTwoIsEqual);
         }
 
-        static public int CalculateCurrentBalance(int userMode, int currenMoney, bool userWon)
+        /// <summary>
+        /// this fuction has 2 modes.
+        /// If the user is inputting additional money, it 
+        /// simply adds the sum to current money.
+        /// Otherwise, winning sum is added to
+        /// current money
+        /// </summary>
+        /// <param name="userMode"></param>
+        /// <param name="currentMoney"></param>
+        /// <param name="userWon"></param>
+        /// <param name="userInputMode"></param>
+        /// <param name="moneyUserInput"></param>
+        /// <returns></returns>
+        static public int CalculateCurrentBalance(int userMode, int currentMoney, bool userWon, bool userInputMode, int moneyUserInput)
         {
+            if (userInputMode) return currentMoney += moneyUserInput;
             if (userMode == Constants.MIDDLE_ROW_MODE || userMode == Constants.ALL_DIAGONALS_MODE)
             {
-                currenMoney -= Constants.COST_PER_ROUND;
+                currentMoney -= Constants.COST_PER_ROUND;
             }
             else
             {
-                currenMoney -= Constants.COST_PER_ROUND * Constants.MULTIPLE_ALL_ROWS;
+                currentMoney -= Constants.COST_PER_ROUND * Constants.MULTIPLE_ALL_ROWS;
             }
-            if (userWon) currenMoney += Constants.WINNING_COMBINATION_AMOUNT;
+            if (userWon) currentMoney += Constants.WINNING_COMBINATION_AMOUNT;
 
 
-            return currenMoney;
+            return currentMoney;
         }
 
         static public int CheckValidArrayDimention (int[,] slotMachineArray, out bool validArray)

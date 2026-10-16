@@ -9,8 +9,9 @@
             int currentMoney = 0, moneyUserInput;
 
             // variable decleration for user mode selection
-            int userSelection;
+            int userSelection = 0;
 
+            int variable = 32;
             // track whether the user has won
             bool userWon;
 
@@ -25,7 +26,7 @@
                 while (true)
                 {
                     if (!UI.GetValidUserInput(out moneyUserInput)) continue;
-                    currentMoney += moneyUserInput;
+                    currentMoney = Logic.CalculateCurrentBalance(userSelection, currentMoney, userWon, Constants.USER_INPUT_MODE_ACTIVE, moneyUserInput);
                     if (!UI.CheckUserInputPlausibility(currentMoney)) continue;
                     break;
                 }
@@ -36,10 +37,11 @@
                 }
 
                 if (userSelection == 5) break;
-
+                
                 // fill with random numbers
                 slotMachineArray = Logic.FillSlotMachineArray(slotMachineArray);
-                // print slot machine
+
+                // print slot machine.
                 UI.PrintSlotMachineArray(slotMachineArray);
 
                 Console.WriteLine();
@@ -83,7 +85,7 @@
                 UI.PrintUserWin(userWon);
 
                 // calculate current balance
-                currentMoney = Logic.CalculateCurrentBalance(userSelection, currentMoney, userWon);
+                currentMoney = Logic.CalculateCurrentBalance(userSelection, currentMoney, userWon, Constants.USER_INPUT_MODE_INACTIVE, moneyUserInput);
 
                 // print current balance
                 UI.PrintCurrentBalance(currentMoney);
