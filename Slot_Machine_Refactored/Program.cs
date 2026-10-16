@@ -11,15 +11,20 @@
             // variable decleration for user mode selection
             int userSelection = 0;
 
-            int variable = 32;
+            int slotMachineDimention = Constants.ARRAY_DIMENTION_SIZE;
             // track whether the user has won
             bool userWon;
 
             int[,] slotMachineArray = new int[Constants.ARRAY_DIMENTION_SIZE, Constants.ARRAY_DIMENTION_SIZE];
             int middleRowPosition = Logic.CheckValidArrayDimention(slotMachineArray, out bool validArray);
-            if (!validArray) UI.ThrowInvalidArrayException();
+            if (!validArray)
+            {
+                slotMachineDimention = UI.GetValidSlotMachineDimention();
+                slotMachineArray = new int[slotMachineDimention, slotMachineDimention];
+                middleRowPosition = Logic.CheckValidArrayDimention(slotMachineArray, out validArray);
+            }
 
-            UI.PrintWelcomeMessage();
+            UI.PrintWelcomeMessage(slotMachineDimention);
             while (true)
             {
                 userWon = false;

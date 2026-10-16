@@ -149,7 +149,7 @@ namespace Slot_Machine_Refactored
         {
             int middleRowPosition = 1;
             validArray = true;
-            if (Constants.ARRAY_DIMENTION_SIZE % 2 != 0 && Constants.ARRAY_DIMENTION_SIZE % 2 != 0)
+            if ((Constants.ARRAY_DIMENTION_SIZE % 2) != 0 && (Constants.ARRAY_DIMENTION_SIZE % 2) != 0)
             {
                 middleRowPosition = (Constants.ARRAY_DIMENTION_SIZE - 1) / 2;
             }

@@ -6,11 +6,11 @@ namespace Slot_Machine_Refactored
 {
     internal class UI
     {
-        static public void PrintWelcomeMessage()
+        static public void PrintWelcomeMessage(int slotMachineDimention)
         {
             // welcome statement
             Console.WriteLine("Welcome to the slot machine");
-            Console.WriteLine($"You have a 3x3 grid. If you hit a winning combination you win {Constants.WINNING_COMBINATION_AMOUNT} $\n");
+            Console.WriteLine($"You have a {slotMachineDimention}x{slotMachineDimention} grid. If you hit a winning combination you win {Constants.WINNING_COMBINATION_AMOUNT} $\n");
             Console.WriteLine($"To start playing you need to enter {Constants.STARTING_AMOUNT} $. Each round costs at least {Constants.COST_PER_ROUND} $\n");
         }
 
@@ -29,9 +29,9 @@ namespace Slot_Machine_Refactored
             {
                 Console.WriteLine("Please enter a valid positive whole number. Zero is a valid input");
             }
-            
+
             return validUserInput;
-           
+
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Slot_Machine_Refactored
 
             return validUserInput;
         }
-            
+
         static public bool GetValidUserModeSelection(out int userSelection)
         {
             bool validUserInput;
@@ -98,9 +98,20 @@ namespace Slot_Machine_Refactored
             Console.WriteLine($"Your current balance is {currentMoney} $\n");
         }
 
-        static public void ThrowInvalidArrayException()
+
+        static public int GetValidSlotMachineDimention()
         {
-            throw new Exception("Decleration error of number of rows and/or columns. The number of rows and columns must be odd and equal");
+            int slotMachineDimention = 3;
+            bool validInput = false;
+            Console.WriteLine("Dimention decleration might be invalid or implausible. The dimention must be an odd whole number above 0");
+
+            while (!validInput)
+            {
+                Console.Write("Please input valid dimention for the slot machine:");
+                validInput = int.TryParse(Console.ReadLine(), out slotMachineDimention) && slotMachineDimention > 0 && (slotMachineDimention % 2) == 1;
+            }
+
+            return slotMachineDimention;
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Slot_Machine_Refactored
 
                             FIRST_ARRAY_POSITION = 0,
 
-                            ARRAY_DIMENTION_SIZE = 3;
+                            ARRAY_DIMENTION_SIZE = 4;
 
                             // used to deactivate parts of balance calculation function
         public const bool   USER_INPUT_MODE_ACTIVE = true,
